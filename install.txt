@@ -1,0 +1,3 @@
+For installation, one has to process as follows:
+1. Install eXist XMLDB on the respective client machine.
+2. Copy $eDIB/utils/controller.xql and $eDIB/utils/xdib_denyAccess.htm into eXist, in /db folder (root folder of the database).

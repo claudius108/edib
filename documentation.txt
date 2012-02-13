@@ -1,0 +1,19 @@
+eDIB allows user to use from browser a local instance of eXist XML database (exist-db.org) for various processsing of data.
+
+One has to call main script of eDIB in the page, before any references to it:
+	<script type="text/javascript" src="../../utils/edib/core/edib.js"></script>
+
+A. Usage from script element:
+	<script type="text/xquery">
+			let $a := doc( "/build.xml" )
+			return $a
+	</script>
+
+B. Usage with the help of an eDIB's specific function:
+	<script type="text/javascript">
+		function xquery() {
+			var response = edib.xquery( 'let $a := doc( "/build.xml" ) return $a' );
+			alert( response );
+		}
+		xquery();
+	</script>

@@ -1,0 +1,3 @@
+Version 0.1. - 2010-08-19
+1. This version of eDIB allows user to process XQuery queries from browser in a local eXist XMLDB, by using queries stored in script elements
+or called as arguments of a eDIB's specific function.
