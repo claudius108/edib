@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="../../utils/xsltforms/xsltforms.xsl" type="text/xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xf="http://www.w3.org/2002/xforms" eXSLTFormsDataInstancesViewer="true">
+    <head>
+        <title>test case</title>
+        <xf:model id="m">
+            <xf:instance id="i1">
+                <query xmlns="http://exist.sourceforge.net/NS/exist" start="1" max="20">
+                    <text>
+						<![CDATA[
+							 let $a := doc('/build.xml')
+							 return $a
+							 ]]></text>
+                    <properties>
+                        <property name="indent" value="yes"/>
+                    </properties>
+                </query>
+            </xf:instance>
+            <xf:submission id="s1" ref="instance('i1')" resource="http://localhost:8080/rest/db/" method="post" replace="all"/>
+            <script type="text/xquery"/>
+        </xf:model>
+    </head>
+    <body>
+        <script type="text/javascript">
+			<![CDATA[
+				 function xdib() {
+				 var queryText = document.getElementById( 'queryText' ).firstChild;
+				 var request = new XMLHttpRequest();
+				 request.overrideMimeType( 'text/xml' );
+				 request.onreadystatechange = function() {
+				 	if ( request.readyState == 4 ) {
+				 		switch( request.status ) {
+				 			case Number(200):
+				 				alert( request.responseXML );
+				 			break;
+				 		}
+				 	}	
+				 }		
+
+				 request.open( "POST", "http://localhost:8080", false );
+				 request.setRequestHeader( 'Content-Type', 'text/xml' );
+				 request.send( ( new XMLSerializer() ).serializeToString( queryText ) );
+				 alert( ( new XMLSerializer() ).serializeToString( request.responseXML ) );
+				 }
+				 ]]></script>
+        <xml id="queryText" style="display:none;">
+            <query xmlns="http://exist.sourceforge.net/NS/exist" start="1" max="20">
+                <text>
+					<![CDATA[
+						 let $a := doc('/build.xml')
+						 return $a
+						 ]]>
+				</text>
+                <properties>
+                    <property name="indent" value="yes"/>
+                </properties>
+            </query>
+        </xml>
+        <xf:trigger>
+            <xf:label>POST complex XQuery</xf:label>
+            <xf:action ev:event="DOMActivate">
+                <xf:load resource="javascript:xdib()"/>
+            </xf:action>
+        </xf:trigger>
+    </body>
+</html>

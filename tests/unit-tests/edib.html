@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="../../utils/xsltforms/xsltforms.xsl" type="text/xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xf="http://www.w3.org/2002/xforms">
+    <head>
+        <title>test case</title>
+		<script type="text/xquery">
+				let $a := doc( "/build.xml" )
+				return $a
+		</script>
+		<script type="text/javascript" src="../../utils/edib/core/edib.js"></script>
+		<script type="text/javascript">
+			function xquery() {
+				var response = edib.xquery( 'let $a := doc( "/build.xml" ) return $a' );
+				alert( response );
+			}
+		</script>
+    </head>
+    <body>
+	<button onclick="xquery()">Submit XQuery</button>
+    </body>
+</html>
